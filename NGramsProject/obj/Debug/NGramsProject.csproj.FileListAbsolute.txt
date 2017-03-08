@@ -1,0 +1,14 @@
+c:\users\jskid\documents\visual studio 2015\Projects\NGramsProject\NGramsProject\bin\Debug\NGramsProject.exe.config
+C:\Users\jskid\documents\visual studio 2015\Projects\NGramsProject\NGramsProject\bin\Debug\NGramsProject.exe
+C:\Users\jskid\documents\visual studio 2015\Projects\NGramsProject\NGramsProject\bin\Debug\NGramsProject.pdb
+C:\Users\jskid\documents\visual studio 2015\Projects\NGramsProject\NGramsProject\obj\Debug\NGramsProject.csprojResolveAssemblyReference.cache
+C:\Users\jskid\documents\visual studio 2015\Projects\NGramsProject\NGramsProject\obj\Debug\MainWindow.g.cs
+C:\Users\jskid\documents\visual studio 2015\Projects\NGramsProject\NGramsProject\obj\Debug\App.g.cs
+C:\Users\jskid\documents\visual studio 2015\Projects\NGramsProject\NGramsProject\obj\Debug\NGramsProject_MarkupCompile.cache
+C:\Users\jskid\documents\visual studio 2015\Projects\NGramsProject\NGramsProject\obj\Debug\NGramsProject_MarkupCompile.lref
+C:\Users\jskid\documents\visual studio 2015\Projects\NGramsProject\NGramsProject\obj\Debug\MainWindow.baml
+C:\Users\jskid\documents\visual studio 2015\Projects\NGramsProject\NGramsProject\obj\Debug\NGramsProject.g.resources
+C:\Users\jskid\documents\visual studio 2015\Projects\NGramsProject\NGramsProject\obj\Debug\NGramsProject.Properties.Resources.resources
+C:\Users\jskid\documents\visual studio 2015\Projects\NGramsProject\NGramsProject\obj\Debug\NGramsProject.csproj.GenerateResource.Cache
+C:\Users\jskid\documents\visual studio 2015\Projects\NGramsProject\NGramsProject\obj\Debug\NGramsProject.exe
+C:\Users\jskid\documents\visual studio 2015\Projects\NGramsProject\NGramsProject\obj\Debug\NGramsProject.pdb

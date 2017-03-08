@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NGramsProject", "NGramsProject\NGramsProject.csproj", "{2981A67D-7096-421B-BEC1-C55A2969C46D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NGramsCreator", "NGramsCreator\NGramsCreator.csproj", "{B5ED3591-FF93-47C0-9814-F07EC1BC7BBC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2981A67D-7096-421B-BEC1-C55A2969C46D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2981A67D-7096-421B-BEC1-C55A2969C46D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2981A67D-7096-421B-BEC1-C55A2969C46D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2981A67D-7096-421B-BEC1-C55A2969C46D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5ED3591-FF93-47C0-9814-F07EC1BC7BBC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5ED3591-FF93-47C0-9814-F07EC1BC7BBC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5ED3591-FF93-47C0-9814-F07EC1BC7BBC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5ED3591-FF93-47C0-9814-F07EC1BC7BBC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
