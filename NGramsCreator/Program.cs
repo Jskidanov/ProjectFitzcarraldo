@@ -10,6 +10,7 @@ namespace NGramsCreator
     {
         static void Main(string[] args)
         {
+            Database database = new Database("C:\\Users\\jskid\\Documents\\Visual Studio 2015\\Projects\\NGramsProject\\NGramsProject\\bin\\Debug\\Corpus\\CrimeAndPunishment.txt", "3", "5");
         }
     }
 }

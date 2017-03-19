@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\jskid\documents\visual studio 2015\Projects\NGramsProject\NGramsProject\obj\Debug\
+C:\Users\jskid\Documents\Visual Studio 2015\Projects\NGramsProject\NGramsProject\obj\Debug\
 NGramsProject
 none
 false
 DEBUG;TRACE
-C:\Users\jskid\documents\visual studio 2015\Projects\NGramsProject\NGramsProject\App.xaml
-2-191243664
+C:\Users\jskid\Documents\Visual Studio 2015\Projects\NGramsProject\NGramsProject\App.xaml
+31819162719
 
-102053982038
+13501899371
 13738642453
-Main Window.xaml;MainWindow.xaml;
+MainWindow.xaml;NGramsDisplay.xaml;TextWindow.xaml;
 
-False
+True
 

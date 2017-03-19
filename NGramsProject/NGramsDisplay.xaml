@@ -1,0 +1,23 @@
+﻿<Window x:Class="NGramsProject.NGramsDisplay"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NGramsProject"
+        mc:Ignorable="d"
+        Title="NGramsDisplay" Height="700" Width="900">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <ScrollViewer Grid.Column="1" HorizontalAlignment="Stretch" Height="651" Margin="10.286,10,10.143,10.429" VerticalAlignment="Center">
+            <Grid>
+                <StackPanel Name="NGramsStackPanel" Margin="0,0,10.143,0.429">
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+
+    </Grid>
+</Window>
