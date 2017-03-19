@@ -44,9 +44,9 @@
             <TabItem Header="Generate Custom Grams">
                 <Grid Background="#FFF0F0F0">
                     <ScrollViewer HorizontalAlignment="Left" Height="225" VerticalAlignment="Top" Width="514">
-                        <TextBox TextWrapping="Wrap"/>
+                        <TextBox x:Name="CustomText" TextWrapping="Wrap"/>
                     </ScrollViewer>
-                    <Button Content="Display Word Combination Statistics" HorizontalAlignment="Left" Margin="242,239,0,0" VerticalAlignment="Top" Width="262" Height="44" Click="Button_Click"/>
+                    <Button Content="Display Word Combination Statistics" HorizontalAlignment="Left" Margin="242,239,0,0" VerticalAlignment="Top" Width="262" Height="44" Click="GenerateStatistics_Click"/>
                 </Grid>
             </TabItem>
         </TabControl>

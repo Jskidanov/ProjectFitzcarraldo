@@ -59,7 +59,6 @@
     <Compile Include="NGramsDisplay.xaml.cs">
       <DependentUpon>NGramsDisplay.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NGramTable.cs" />
     <Compile Include="TextWindow.xaml.cs">
       <DependentUpon>TextWindow.xaml</DependentUpon>
     </Compile>

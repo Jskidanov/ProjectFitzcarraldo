@@ -34,10 +34,12 @@ namespace NGramsProject
 
         }
 
-        public Database(string[] input, int nLength)
+        public Database(string input, int nLength)
         {
-            words = input;
+            temp = parseString(input);
             nValue = nLength;
+
+            words = temp.Split(' ');
 
             makeNGrams();
 
@@ -84,16 +86,19 @@ namespace NGramsProject
 
         public void makeNGrams()
         {
-            LinkedList<string> previousSequence = new LinkedList<string>();
+            string previousSequence = "";
 
             for (int i = 0; i <= Words.Length - NValue; i++)
             {
                 if (i == 0)
                 {
+                    string finalString = "";
+
                     for (int j = 0; j < NValue; j++)
                     {
-                        string newString = words[i + j];
 
+                        string newString = words[i + j];
+                      
                         if (j != (NValue - 1))
                         {
                             newString = newString + " ";
@@ -101,25 +106,31 @@ namespace NGramsProject
 
                         if (j != 0)
                         {
-                            previousSequence.AddLast(newString);
+                            previousSequence = previousSequence + newString;
                         }
 
+                        finalString = finalString + newString;
                     }
 
+                    addStringtoDictionary(finalString);
+
                 }
 
-                string newTerm = " " + words[i + (NValue - 1)];
-                previousSequence.AddLast(newTerm);
-
-                string sequenceToAdd = "";
-                for (LinkedListNode<string> node = previousSequence.First; node != null; node = node.Next)
+                else
                 {
-                    sequenceToAdd = sequenceToAdd + node.Value;
+                    string newTerm = " " + words[i + (NValue - 1)];
+
+                    string sequenceToAdd = previousSequence + newTerm;
+                    sequenceToAdd = sequenceToAdd.Trim();
+
+                    addStringtoDictionary(sequenceToAdd);
+
+                    string[] newArray = sequenceToAdd.Split(' ');
+                    previousSequence = string.Join(" ", newArray.Skip(1));
+
                 }
 
-                sequenceToAdd = sequenceToAdd.Trim();
-                addStringtoDictionary(sequenceToAdd);
-                previousSequence.RemoveFirst();
+                
             }
         }
 

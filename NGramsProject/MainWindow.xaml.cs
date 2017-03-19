@@ -84,9 +84,12 @@ namespace NGramsProject
             nGramNum = nGramBox.SelectedIndex;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void GenerateStatistics_Click(object sender, RoutedEventArgs e)
         {
-
+            string theText = CustomText.Text;
+            int theLength = theText.Split(' ').Length;
+            NGramsDisplay nWindow = new NGramsDisplay(theText, 5, new Database(theText, 5).NGrams);
+            nWindow.Show();
         }
     }
 }
