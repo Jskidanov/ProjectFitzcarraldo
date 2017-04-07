@@ -66,7 +66,7 @@ namespace NGramsProject
 
             string result = theString;
 
-            char[] punctuation = new char[] { '-', '[', ']', '(', ')', '{', '}', '*', }; // Investigate the punctuation
+            char[] punctuation = new char[] { '-', '[', ']', '(', ')', '{', '}', '*'}; // Investigate the punctuation
             // Notice  -,.!?;: are still there
 
             result = result.Replace("\"", "");

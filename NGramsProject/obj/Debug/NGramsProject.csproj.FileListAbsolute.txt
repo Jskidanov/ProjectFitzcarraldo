@@ -15,4 +15,3 @@ C:\Users\jskid\Documents\Visual Studio 2015\Projects\NGramsProject\NGramsProject
 C:\Users\jskid\Documents\Visual Studio 2015\Projects\NGramsProject\NGramsProject\obj\Debug\TextWindow.baml
 C:\Users\jskid\Documents\Visual Studio 2015\Projects\NGramsProject\NGramsProject\obj\Debug\NGramsDisplay.g.cs
 C:\Users\jskid\Documents\Visual Studio 2015\Projects\NGramsProject\NGramsProject\obj\Debug\NGramsDisplay.baml
-C:\Users\jskid\Documents\Visual Studio 2015\Projects\NGramsProject\NGramsProject\obj\Debug\NGramsProject.csprojResolveAssemblyReference.cache

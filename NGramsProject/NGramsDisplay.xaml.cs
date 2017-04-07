@@ -65,7 +65,13 @@ namespace NGramsProject
                 for (int i = 0; i < words.Length; i++)
                 {
                     List<KeyValuePair<String, Int32>> results = new List<KeyValuePair<String, Int32>>();
-                    results = results.Concat(searchSingleGrams(words[i])).ToList();
+
+                    KeyValuePair<List<KeyValuePair<String, Int32>>, SortedDictionary<String, Int32>> pair = searchSingleGrams(words[i]);
+                    List<KeyValuePair<String, Int32>> singleGramOutput = pair.Key;
+                    SortedDictionary<String, Int32> topTen = pair.Value;
+
+
+                    results = results.Concat(singleGramOutput).ToList();
                     singleGramList = singleGramList.Concat(results).ToList();
 
                     TextBlock wordHeader = new TextBlock() { Text = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(words[i]) };
@@ -74,7 +80,7 @@ namespace NGramsProject
 
                     NGramsStackPanel.Children.Add(wordHeader);
 
-                    addNGrams(results);
+                    addTopTenFindings(results, topTen);
 
                 }
             }
@@ -123,7 +129,11 @@ namespace NGramsProject
                 foreach (string combination in wordCombinations)
                 {
 
-                    List<KeyValuePair<String, Int32>> results = searchMultiGrams(combination);
+
+                    KeyValuePair<List<KeyValuePair<String, Int32>>, SortedDictionary<String, Int32>> pair = searchMultiGrams(combination);
+                    List<KeyValuePair<String, Int32>> results = pair.Key;
+                    SortedDictionary<String, Int32> topTen = pair.Value;
+
 
                     TextBlock wordHeader = new TextBlock() { Text = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(combination) };
                     //wordHeader.FontStyle = FontStyles.Italic;
@@ -132,17 +142,18 @@ namespace NGramsProject
 
                     NGramsStackPanel.Children.Add(wordHeader);
 
-                    addNGrams(results);
+                    addTopTenFindings(results, topTen);
                     
                 }
 
             }
         }
 
-        private List<KeyValuePair<String, Int32>> searchSingleGrams(string searchKey)
+        private KeyValuePair<List<KeyValuePair<String, Int32>>, SortedDictionary<String, Int32>> searchSingleGrams(string searchKey)
         {
 
             List<KeyValuePair<String, Int32>> result = new List<KeyValuePair<String, Int32>>();
+            SortedDictionary<String, Int32> topTen = new SortedDictionary<String, Int32>();
 
             foreach (KeyValuePair<String, Int32> entry in nGrams)
             {
@@ -153,17 +164,36 @@ namespace NGramsProject
                 if ((parsedSearchSegment.Contains(parsedKey) || parsedKey.Contains(parsedSearchSegment)))
                 {
                     result.Add(entry);
+
+                    string[] entryWords = entry.Key.Split(' ');
+
+                    for (int i = 0; i < entryWords.Length; i++)
+                    {
+                        string word = entryWords[i];
+
+                        if (topTen.ContainsKey(word))
+                        {
+                            topTen[word] = topTen[word] + 1;
+                        }
+
+                        else if (!word.Contains(searchKey))
+                        {
+                            topTen.Add(word, 1);
+                        }
+                    }
+
                 }
             }
 
-            return result;
+            return new KeyValuePair<List<KeyValuePair<string, int>>, SortedDictionary<string, int>>(result, topTen);
 
         }
 
-        private List<KeyValuePair<String, Int32>> searchMultiGrams(string searchKey)
+        private KeyValuePair<List<KeyValuePair<String, Int32>>, SortedDictionary<String, Int32>> searchMultiGrams(string searchKey)
         {
 
             List<KeyValuePair<String, Int32>> result = new List<KeyValuePair<String, Int32>>();
+            SortedDictionary<String, Int32> topTen = new SortedDictionary<String, Int32>();
 
             foreach (KeyValuePair<String, Int32> entry in singleGramList)
             {
@@ -187,10 +217,27 @@ namespace NGramsProject
                 if (allWordsIn)
                 {
                     result.Add(entry);
+
+                    string[] entryWords = entry.Key.Split(' ');
+
+                    for (int i = 0; i < entryWords.Length; i++)
+                    {
+                        string word = entryWords[i];
+
+                        if (topTen.ContainsKey(word))
+                        {
+                            topTen[word] = topTen[word] + 1;
+                        }
+
+                        else if (!searchKey.Contains(word))
+                        {
+                            topTen.Add(word, 1);
+                        }
+                    }
                 }
             }
 
-            return result;
+            return new KeyValuePair<List<KeyValuePair<String, Int32>>, SortedDictionary<String, Int32>> (result, topTen);
 
         }
 
@@ -218,10 +265,82 @@ namespace NGramsProject
 
             return result;
         }
+
+        private void addTopTenFindings(List<KeyValuePair<String, Int32>> selectedGrams, SortedDictionary<String, Int32> topTen)
+        {
+            List<KeyValuePair<String, Int32>> sortedTen = topTen.ToList();
+            sortedTen = sortedTen.OrderByDescending(x => x.Value).ToList();
+            int endRange;
+            if (sortedTen.Count > 9)
+            {
+                endRange = 10;
+            }
+
+            else
+            {
+                endRange = sortedTen.Count;
+            }
+
+            for (int i = 0; i < endRange; i++)
+            {
+                string word = sortedTen[i].Key;
+                List<KeyValuePair<String, Int32>> matches = new List<KeyValuePair<String, Int32>>();
+
+                foreach (KeyValuePair<String, Int32> entry in selectedGrams)
+                {
+                    if (entry.Key.Split(' ').Contains(word))
+                    {
+                        matches.Add(entry);
+                    }
+
+                }
+
+                addAllFindings(matches, word, matches.Sum(x => x.Value));
+
+            }
+
+            if (selectedGrams.Count > 0)
+            {
+                addAllFindings(selectedGrams, "All Findings", selectedGrams.Sum(x => x.Value));
+            }
+            
+        }
         
 
-        private void addNGrams(List<KeyValuePair<String, Int32>> selectedGrams)
+        private void addAllFindings(List<KeyValuePair<String, Int32>> selectedGrams, string header, int headerCount)
         {
+            DockPanel mainPanel = new DockPanel();
+            Border mainBorder = new Border();
+            mainBorder.BorderBrush = Brushes.Black;
+            mainBorder.BorderThickness = new Thickness(2);
+            mainBorder.Child = mainPanel;
+            mainPanel.Background = Brushes.LightGray;
+
+            TextBlock mainKey = new TextBlock() { Text = header };
+            mainKey.FontSize = 12;
+            TextBlock mainCount = new TextBlock() { Text = headerCount.ToString() };
+            mainCount.FontSize = 16;
+            mainCount.FontWeight = FontWeights.Bold;
+
+            mainPanel.Children.Add(mainKey);
+            mainPanel.Children.Add(mainCount);
+            mainPanel.LastChildFill = false;
+
+            Expander mainExpander = new Expander();
+            mainExpander.ExpandDirection = ExpandDirection.Down;
+            mainExpander.HorizontalAlignment = HorizontalAlignment.Stretch;
+            StackPanel expanderStack = new StackPanel();
+            expanderStack.HorizontalAlignment = HorizontalAlignment.Stretch;
+            Grid mainGrid = new Grid();
+            mainGrid.HorizontalAlignment = HorizontalAlignment.Stretch;
+            mainExpander.Content = mainGrid;
+            mainGrid.Children.Add(expanderStack);
+            mainPanel.Children.Add(mainExpander);
+
+            DockPanel.SetDock(mainKey, Dock.Top);
+            DockPanel.SetDock(mainCount, Dock.Right);
+
+            NGramsStackPanel.Children.Add(mainBorder);
 
             foreach (KeyValuePair<String, Int32> gram in selectedGrams)
             {
@@ -231,7 +350,7 @@ namespace NGramsProject
                 border.BorderBrush = Brushes.Black;
                 border.BorderThickness = new Thickness(2);
                 border.Child = panel;
-                panel.Background = Brushes.LightGray;
+                panel.Background = Brushes.WhiteSmoke;
 
                 TextBlock key = new TextBlock() { Text = gram.Key };
                 key.FontSize = 12;
@@ -246,7 +365,7 @@ namespace NGramsProject
                 DockPanel.SetDock(key, Dock.Top);
                 DockPanel.SetDock(count, Dock.Right);
 
-                NGramsStackPanel.Children.Add(border);
+                expanderStack.Children.Add(border);
             }
 
         }
